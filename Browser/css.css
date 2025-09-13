@@ -1,0 +1,49 @@
+.container {
+    position: relative;
+    width: 320px;
+    height: 220px;
+    margin: 24px auto;
+    display: block; /* stacking handled by absolute children */
+}
+.square {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px;
+    height: 160px;
+    border: 2px solid #444;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+    background-size: cover, cover;
+    background-position: center center, center center;
+    transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+/* Use two-layer gradients (top layer then bottom) for clear color differences */
+#div {
+    /* top: semi-transparent cyan, bottom: yellow */
+    background-image: linear-gradient(rgba(0,255,255,0.6), rgba(0,255,255,0.6)),
+                    linear-gradient(rgb(255,230,0), rgb(255,200,0));
+    background-blend-mode: screen;
+}
+#div2 {
+    /* top: semi-transparent magenta, bottom: lime */
+    background-image: linear-gradient(rgba(255,0,255,0.6), rgba(255,0,255,0.6)),
+                    linear-gradient(rgb(0,200,0), rgb(0,160,0));
+    background-blend-mode: multiply;
+}
+#div3 {
+    /* top: semi-transparent blue, bottom: orange */
+    background-image: linear-gradient(rgba(0,100,255,0.6), rgba(0,100,255,0.6)),
+                    linear-gradient(rgb(255,120,0), rgb(255,80,0));
+    background-blend-mode: overlay;
+}
+
+/* Overlap offsets and stacking */
+#div { z-index: 30; transform: translate(-60%, -60%) rotate(-2deg); }
+#div2 { z-index: 20; transform: translate(-50%, -50%) rotate(1deg); }
+#div3 { z-index: 10; transform: translate(-40%, -40%) rotate(3deg); }
+
+@media (max-width: 420px) {
+    .square { width: 92%; }
+}
